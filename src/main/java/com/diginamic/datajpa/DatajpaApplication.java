@@ -72,9 +72,9 @@ public class DatajpaApplication implements CommandLineRunner{
 			System.out.println(specie.toString());
 		}
 				
-		Optional<Person> p1 = personRepository.findById(2);
+		Optional<Person> p1 = personRepository.findById(22);
 		if(p1.isPresent()) {
-			System.out.println(p1.toString());
+			System.out.println(p1.get().toString());
 		}
 		else {
 			System.out.println("No match found");
@@ -82,7 +82,7 @@ public class DatajpaApplication implements CommandLineRunner{
 		
 		Optional<Animal> a1 = animalRepository.findById(100);
 		if(a1.isPresent()) {
-			System.out.println(a1.toString());
+			System.out.println(a1.get().toString());
 		}
 		else {
 			System.out.println("No match found");

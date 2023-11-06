@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,7 +30,7 @@ public class Person {
 	@Column(length = 50, nullable = false)
 	private String lastname;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 		name = "person_animals",
 		joinColumns = @JoinColumn(name = "person_id")
@@ -74,7 +75,8 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", age=" + age + ", firstname=" + firstname + ", lastname=" + lastname + "]";
+		return "Person [id=" + id + ", age=" + age + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", animals=" + animals + "]";
 	}
 	
 }
