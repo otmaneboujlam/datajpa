@@ -28,5 +28,38 @@ public class Species {
 	@OneToMany
 	@JoinColumn(name = "species_id")
 	private List<Animal> animals = new ArrayList<Animal>();
+
+	public String getCommon_name() {
+		return common_name;
+	}
+
+	public void setCommon_name(String common_name) {
+		this.common_name = common_name;
+	}
+
+	public String getLatin_name() {
+		return latin_name;
+	}
+
+	public void setLatin_name(String latin_name) {
+		this.latin_name = latin_name;
+	}
+
+	public List<Animal> getAnimals() {
+		return animals;
+	}
+
+	public void setAnimals(List<Animal> animals) {
+		this.animals = animals;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Species [id=" + id + ", common_name=" + common_name + ", latin_name=" + latin_name + "]";
+	}
 	
 }
