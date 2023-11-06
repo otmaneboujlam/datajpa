@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -28,5 +30,9 @@ public class Person {
 	private String lastname;
 
 	@ManyToMany
+	@JoinTable(
+		name = "person_animals",
+		joinColumns = @JoinColumn(name = "person_id")
+			)
 	private List<Animal> animals = new ArrayList<Animal>();
 }

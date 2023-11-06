@@ -8,12 +8,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.diginamic.datajpa.repository.AnimalRepository;
+import com.diginamic.datajpa.repository.PersonRepository;
 
 @SpringBootApplication
 public class DatajpaApplication implements CommandLineRunner{
 
 	@Autowired
-	private AnimalRepository personneSimpleRepository;
+	private PersonRepository personRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DatajpaApplication.class, args);
@@ -21,7 +22,7 @@ public class DatajpaApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-//		System.out.println(personneSimpleRepository.count());
+		System.out.println(personRepository.count());
 //		
 //		PersonneSimple p1 = new PersonneSimple();
 //		p1.setNom("BOUJLAM");
