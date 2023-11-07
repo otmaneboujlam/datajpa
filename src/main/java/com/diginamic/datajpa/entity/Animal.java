@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +31,7 @@ public class Animal {
 	@ManyToOne
 	private Species species;
 	
-	@ManyToMany(mappedBy = "animals")
+	@ManyToMany(mappedBy = "animals", fetch = FetchType.EAGER)
 	private List<Person> persons;
 
 	public String getColor() {
@@ -79,7 +80,8 @@ public class Animal {
 
 	@Override
 	public String toString() {
-		return "Animal [id=" + id + ", color=" + color + ", name=" + name + ", sex=" + sex + "]";
+		return "Animal [id=" + id + ", color=" + color + ", name=" + name + ", sex=" + sex + ", species=" + species
+				+ "]";
 	}
 	
 }

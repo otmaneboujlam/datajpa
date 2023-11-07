@@ -62,14 +62,23 @@ public class DatajpaApplication implements CommandLineRunner{
 		
 		for(Person person : personRepository.findAll()) {
 			System.out.println(person.toString());
+			for(Animal animalPerson : person.getAnimals()) {
+				System.out.println(animalPerson.toString());
+			}
 		}
 		
 		for(Animal animal : animalRepository.findAll()) {
 			System.out.println(animal.toString());
+			for(Person personAnimal : animal.getPersons()) {
+				System.out.println(personAnimal.toString());
+			}
 		}
 
 		for(Species specie : speciesRepository.findAll()) {
 			System.out.println(specie.toString());
+			for(Animal animalSpecie : specie.getAnimals()) {
+				System.out.println(animalSpecie.toString());
+			}
 		}
 				
 		Optional<Person> p1 = personRepository.findById(22);
