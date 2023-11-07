@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Sort;
 
 import com.diginamic.datajpa.entity.Animal;
 import com.diginamic.datajpa.entity.Person;
@@ -184,5 +185,58 @@ public class DatajpaApplication implements CommandLineRunner{
 		else {
 			System.out.println("No match found");
 		}
+		
+		System.out.println("--------------------");
+		List<Species> speciesListAsc = speciesRepository.findAllAsc(Sort.by("commonName"));
+		if(speciesListAsc != null) {
+			for(Species ssa : speciesListAsc)
+				System.out.println(ssa.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		List<Species> speciesListLike = speciesRepository.findAllLike("%Rat%");
+		if(speciesListLike != null) {
+			for(Species ssl : speciesListLike)
+				System.out.println(ssl.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		List<Person> personAgeInList = personRepository.findAllByAgeIn(18, 40);
+		if(personAgeInList != null) {
+			for(Person pai : personAgeInList)
+				System.out.println(pai.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		List<Person> personAnimalList = personRepository.findAllByAnimal(a);
+		if(personAnimalList != null) {
+			for(Person pa : personAnimalList)
+				System.out.println(pa.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		Optional<Integer> countAnimalSex = animalRepository.countAnimalBySex("M");
+		if(countAnimalSex.isPresent()) {
+			System.out.println(countAnimalSex.get());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		Boolean isAnimalBelongsToPerson = animalRepository.hasOwner(a);
+		System.out.println(isAnimalBelongsToPerson);
 	}
 }
