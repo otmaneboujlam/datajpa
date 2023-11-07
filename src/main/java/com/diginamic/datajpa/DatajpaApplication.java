@@ -236,7 +236,15 @@ public class DatajpaApplication implements CommandLineRunner{
 		}
 		
 		System.out.println("--------------------");
-		Boolean isAnimalBelongsToPerson = animalRepository.hasOwner(a);
-		System.out.println(isAnimalBelongsToPerson);
+		System.out.println(animalRepository.hasOwner(a));
+		
+		Animal aaa = new Animal();
+		aaa.setColor("Noir");
+		aaa.setName("Gus");
+		aaa.setSex("M");
+		aaa.setSpecies(s);
+		animalRepository.save(aaa);
+		
+		System.out.println(animalRepository.hasOwner(aaa));
 	}
 }
