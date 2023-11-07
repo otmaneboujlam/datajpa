@@ -7,5 +7,5 @@ import com.diginamic.datajpa.entity.Animal;
 
 @Repository
 public interface AnimalRepository extends JpaRepository<Animal, Integer>{
-
+	
 }

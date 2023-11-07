@@ -14,6 +14,8 @@ import com.diginamic.datajpa.repository.AnimalRepository;
 import com.diginamic.datajpa.repository.PersonRepository;
 import com.diginamic.datajpa.repository.SpeciesRepository;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootApplication
 public class DatajpaApplication implements CommandLineRunner{
 
@@ -31,8 +33,10 @@ public class DatajpaApplication implements CommandLineRunner{
 	}
 	
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		
+		System.out.println("--------------------");
 		System.out.println(personRepository.count());
 		System.out.println(animalRepository.count());
 		System.out.println(speciesRepository.count());
@@ -56,31 +60,39 @@ public class DatajpaApplication implements CommandLineRunner{
 		p.getAnimals().add(a);
 		personRepository.save(p);
 		
+		System.out.println("--------------------");
 		System.out.println(personRepository.count());
 		System.out.println(animalRepository.count());
 		System.out.println(speciesRepository.count());
 		
+		System.out.println("--------------------");
 		for(Person person : personRepository.findAll()) {
 			System.out.println(person.toString());
-			for(Animal animalPerson : person.getAnimals()) {
-				System.out.println(animalPerson.toString());
-			}
+			if(person.getAnimals() != null)
+				for(Animal animalPerson : person.getAnimals()) {
+					System.out.println(animalPerson.toString());
+				}
 		}
 		
+		System.out.println("--------------------");
 		for(Animal animal : animalRepository.findAll()) {
 			System.out.println(animal.toString());
-			for(Person personAnimal : animal.getPersons()) {
-				System.out.println(personAnimal.toString());
-			}
+			if(animal.getPersons() != null)
+				for(Person personAnimal : animal.getPersons()) {
+					System.out.println(personAnimal.toString());
+				}
 		}
 
+		System.out.println("--------------------");
 		for(Species specie : speciesRepository.findAll()) {
 			System.out.println(specie.toString());
-			for(Animal animalSpecie : specie.getAnimals()) {
-				System.out.println(animalSpecie.toString());
-			}
+			if(specie.getAnimals() != null)
+				for(Animal animalSpecie : specie.getAnimals()) {
+					System.out.println(animalSpecie.toString());
+				}
 		}
-				
+		
+		System.out.println("--------------------");		
 		Optional<Person> p1 = personRepository.findById(22);
 		if(p1.isPresent()) {
 			System.out.println(p1.get().toString());
@@ -89,6 +101,7 @@ public class DatajpaApplication implements CommandLineRunner{
 			System.out.println("No match found");
 		}
 		
+		System.out.println("--------------------");
 		Optional<Animal> a1 = animalRepository.findById(100);
 		if(a1.isPresent()) {
 			System.out.println(a1.get().toString());
@@ -97,9 +110,13 @@ public class DatajpaApplication implements CommandLineRunner{
 			System.out.println("No match found");
 		}
 		
-		personRepository.deleteById(2);
-		animalRepository.deleteById(100);
+		personRepository.deleteById(5);
+		animalRepository.deleteById(8);
 		
+		//On ne peut pas supprimer une specie qui est attachée à un animal !
+		//speciesRepository.deleteById(1);
+		
+		System.out.println("--------------------");
 		System.out.println(personRepository.count());
 		System.out.println(animalRepository.count());
 		System.out.println(speciesRepository.count());
