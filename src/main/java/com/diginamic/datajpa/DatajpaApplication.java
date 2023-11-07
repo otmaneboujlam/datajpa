@@ -1,5 +1,7 @@
 package com.diginamic.datajpa;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,8 +112,8 @@ public class DatajpaApplication implements CommandLineRunner{
 			System.out.println("No match found");
 		}
 		
-		personRepository.deleteById(5);
-		animalRepository.deleteById(8);
+		personRepository.deleteById(9);
+		animalRepository.deleteById(6);
 		
 		//On ne peut pas supprimer une specie qui est attachée à un animal !
 		//speciesRepository.deleteById(1);
@@ -121,5 +123,66 @@ public class DatajpaApplication implements CommandLineRunner{
 		System.out.println(animalRepository.count());
 		System.out.println(speciesRepository.count());
 		
+		System.out.println("--------------------");
+		Optional<Species> s3 = speciesRepository.findFirstByCommonName("Rat");
+		if(s3.isPresent()) {
+			System.out.println(s3.get().toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		List<Species> speciesList = speciesRepository.findByLatinNameContainsIgnoreCase("Rat");
+		if(speciesList != null) {
+			for(Species sp : speciesList)
+				System.out.println(sp.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		List<Person> personList = personRepository.findByFirstnameOrLastname("Bill", "Lamarque");
+		if(personList != null) {
+			for(Person pp : personList)
+				System.out.println(pp.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		List<Person> personAgeList = personRepository.findByAgeGreaterThan(18);
+		if(personAgeList != null) {
+			for(Person ppp : personAgeList)
+				System.out.println(ppp.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		List<Animal> animalSpeciesList = animalRepository.findBySpecies(s);
+		if(animalSpeciesList != null) {
+			for(Animal aa : animalSpeciesList)
+				System.out.println(aa.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
+		
+		System.out.println("--------------------");
+		List<String> colors = new ArrayList<>();
+		colors.add("Noir");
+		colors.add("Blanc");
+		List<Animal> animalColorList = animalRepository.findByColorIn(colors);
+		if(animalColorList != null) {
+			for(Animal ac : animalColorList)
+				System.out.println(ac.toString());
+		}
+		else {
+			System.out.println("No match found");
+		}
 	}
 }

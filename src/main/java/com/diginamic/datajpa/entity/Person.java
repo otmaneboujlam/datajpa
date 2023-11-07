@@ -3,6 +3,7 @@ package com.diginamic.datajpa.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Person {
 	@Column(length = 50, nullable = false)
 	private String lastname;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 		name = "person_animals",
 		joinColumns = @JoinColumn(name = "person_id")

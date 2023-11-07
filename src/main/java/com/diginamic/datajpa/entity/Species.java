@@ -20,29 +20,29 @@ public class Species {
 	private Integer id;
 	
 	@Column(length = 50, nullable = false)
-	private String common_name;
+	private String commonName;
 
 	@Column(length = 200, nullable = false)
-	private String latin_name;
+	private String latinName;
 	
 	@OneToMany
 	@JoinColumn(name = "species_id")
 	private List<Animal> animals = new ArrayList<Animal>();
 
 	public String getCommon_name() {
-		return common_name;
+		return commonName;
 	}
 
-	public void setCommon_name(String common_name) {
-		this.common_name = common_name;
+	public void setCommon_name(String commonName) {
+		this.commonName = commonName;
 	}
 
 	public String getLatin_name() {
-		return latin_name;
+		return latinName;
 	}
 
-	public void setLatin_name(String latin_name) {
-		this.latin_name = latin_name;
+	public void setLatin_name(String latinName) {
+		this.latinName = latinName;
 	}
 
 	public List<Animal> getAnimals() {
@@ -59,7 +59,7 @@ public class Species {
 
 	@Override
 	public String toString() {
-		return "Species [id=" + id + ", common_name=" + common_name + ", latin_name=" + latin_name + "]";
+		return "Species [id=" + id + ", commonName=" + commonName + ", latinName=" + latinName + "]";
 	}
 	
 }
