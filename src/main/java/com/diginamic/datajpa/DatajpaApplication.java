@@ -246,5 +246,13 @@ public class DatajpaApplication implements CommandLineRunner{
 		animalRepository.save(aaa);
 		
 		System.out.println(animalRepository.hasOwner(aaa));
+		
+		System.out.println("--------------------");
+		
+		personRepository.deletePersonHasNoAnimal();
+		
+		personRepository.createPersons(5);
+		
+		
 	}
 }

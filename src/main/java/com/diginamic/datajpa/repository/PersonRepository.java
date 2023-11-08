@@ -11,7 +11,7 @@ import com.diginamic.datajpa.entity.Animal;
 import com.diginamic.datajpa.entity.Person;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Integer>{
+public interface PersonRepository extends JpaRepository<Person, Integer>, PersonRepositoryCustom {
 
 	List<Person> findByFirstnameOrLastname(String firstname, String lastname);
 	
