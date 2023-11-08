@@ -21,7 +21,7 @@ public class Person {
 	@Column(length = 11)
 	private Integer id;
 	
-	@Column(length = 11, columnDefinition = "default NULL")
+	@Column(length = 11, columnDefinition = "integer default NULL")
 	private Integer age;
 	
 	@Column(length = 50, nullable = false)

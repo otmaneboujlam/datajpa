@@ -2,6 +2,7 @@ package com.diginamic.datajpa.repository;
 
 
 import com.diginamic.datajpa.entity.Person;
+import com.github.javafaker.Faker;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -22,12 +23,12 @@ public class PersonRepositoryCustomImpl implements PersonRepositoryCustom {
 
 	@Override
 	public void createPersons(Integer nombrePerson) {
-		
+		Faker faker = new Faker();
 		for(int i=0; i<nombrePerson; i++) {
 			Person p = new Person();
-			p.setFirstname("First_"+i);
-			p.setLastname("Last_"+i);
-			p.setAge(i+10);
+			p.setFirstname(faker.name().firstName());
+			p.setLastname(faker.name().lastName());
+			p.setAge(faker.number().numberBetween(1, 100));
 			em.persist(p);
 		}
 		

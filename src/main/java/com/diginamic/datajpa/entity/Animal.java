@@ -19,7 +19,7 @@ public class Animal {
 	@Column(length = 11)
 	private Integer id;
 	
-	@Column(length = 50, columnDefinition = "default NULL")
+	@Column(length = 50, columnDefinition = "varchar(50) default NULL")
 	private String color;
 	
 	@Column(length = 50, nullable = false)
