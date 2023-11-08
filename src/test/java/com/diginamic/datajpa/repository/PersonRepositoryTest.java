@@ -48,4 +48,10 @@ public class PersonRepositoryTest {
 		List<Person> result = personRepository.findByAgeGreaterThan(25);
 		Assertions.assertEquals(1, result.size());
 	}
+	
+	@Test
+	public void findAllByAgeInTest() {
+		List<Person> result = personRepository.findAllByAgeIn(24, 26);
+		Assertions.assertEquals(1, result.size());
+	}
 }
