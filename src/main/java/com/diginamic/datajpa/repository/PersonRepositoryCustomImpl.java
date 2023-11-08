@@ -1,6 +1,5 @@
 package com.diginamic.datajpa.repository;
 
-import java.util.List;
 
 import com.diginamic.datajpa.entity.Person;
 
@@ -17,10 +16,8 @@ public class PersonRepositoryCustomImpl implements PersonRepositoryCustom {
 	@Transactional
 	public void deletePersonHasNoAnimal() {
 
-		List<Person> results = em.createQuery("from Person p where p.animals is empty", Person.class).getResultList();
-		for(Person person : results) {
-			em.remove(person);
-		}	
+		em.createQuery("delete from Person p where p.animals is empty").executeUpdate();
+	
 	}
 
 	@Override
