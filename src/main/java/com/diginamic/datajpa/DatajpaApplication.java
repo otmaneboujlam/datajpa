@@ -251,8 +251,7 @@ public class DatajpaApplication implements CommandLineRunner{
 		
 		personRepository.deletePersonHasNoAnimal();
 		
-		personRepository.createPersons(5);
-		
+		personRepository.createPersons(2);
 		
 	}
 }
